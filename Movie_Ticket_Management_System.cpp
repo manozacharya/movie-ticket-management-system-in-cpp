@@ -1,17 +1,17 @@
 //program for creating Movie Ticket Management System
 
-#include<iostream>
-#include<windows.h>
-#include<conio.h>
-#include<fstream>
-#include<cstring>
-#include<cstdio>
-#include<cstdlib>
-#include<iomanip>
+#include<iostream>  //preprocessor directive,used to load files and I/O operations
+#include<windows.h> //contains declarations for all of the functions in the Windows API,all the data types used by the various functions and subsystems
+#include<conio.h>  
+#include<fstream> //I/O stream class to operate on files
+#include<cstring> //helps to manipulate several string functions
+#include<cstdio> //I/O operations, stdio.h in C
+#include<cstdlib> //general purpose functions, including dynamic memory management, random number generation, communication with the environment, integer arithmetics, searching, sorting and converting.
+#include<iomanip> //I/O manipulators-Header providing parametric manipulators(setw,setiosflags,resetiosflags)
 using namespace std;
 //global variable declaration
 
-int k=7,r=0,flag=0;
+int k=7,r=0,flag=0; //flag is a predefined bit or bit sequence that holds a binary value
 COORD coord = {0, 0};
 
 void gotoxy(int x, int y)
@@ -27,8 +27,8 @@ struct date
 int mm,dd,yy;
 };
 
-ofstream fout;
-ifstream fin;
+ofstream fout; //Create an Output Stream    must declare it as class ofstream
+ifstream fin; //Create an Input Stream
 
 class ticket
 {
@@ -62,7 +62,8 @@ public:
 		gotoxy(3,k);
 		cout<<itemno;
 		gotoxy(13,k);
-		puts(name);
+		//puts(name);
+		cout<<name;
 	  }
 	
 	int retno()
@@ -90,6 +91,11 @@ class amount: public ticket
 }amt;
 
 
+void amount::calculate()
+ {
+	netamt=qty*price;
+ }
+
 void amount::add()
  {
 	ticket::add();
@@ -102,10 +108,7 @@ void amount::add()
 	fout.close();
  }
  
-void amount::calculate()
- {
-	netamt=qty*price;
- }
+
  
 void amount::show()
  {
@@ -223,7 +226,7 @@ menu:
 	 {
 	 case 1:
 ss:
-		system("cls");
+		system("cls"); //clear screen mode
 		gotoxy(25,2);
 		cout<<"CART DETAILS";
 		gotoxy(25,3);
@@ -255,7 +258,7 @@ ss:
 			    cout<<"\n\nFile Not Found...";
 				goto menu;
 			}
-			fin.seekg(0);
+			fin.seekg(0); //Set position in input sequence. Sets the position of the next character to be extracted from the input stream.
 			gtotal=0;
 			while(!fin.eof())
 			 {
